@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  @apply bg-sand-100 text-ink font-body;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+/* ---- Signature element: jharokha (haveli window) arch ----
+   Used to frame room cards, gallery items and section anchors,
+   evoking the scalloped stone archways of Sikar's Shekhawati havelis. */
+.jharokha-arch {
+  border-radius: 50% 50% 6px 6px / 34% 34% 6px 6px;
+  position: relative;
+}
+
+.jharokha-arch::before {
+  content: '';
+  position: absolute;
+  inset: 10px 10px auto 10px;
+  height: 40%;
+  border: 1px solid rgba(199, 154, 62, 0.55);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+  pointer-events: none;
+}
+
+/* Shekhawati-inspired fresco border: a repeating diamond & arch strip
+   used between major sections instead of a plain hairline rule. */
+.fresco-divider {
+  height: 14px;
+  background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 8px,
+      rgba(199, 154, 62, 0.35) 8px 9px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 8px,
+      rgba(156, 61, 34, 0.25) 8px 9px
+    );
+  background-size: 20px 14px;
+  background-position: center;
+}
+
+.eyebrow {
+  @apply font-body text-xs tracking-[0.3em] uppercase text-gold-dark font-semibold;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 bg-rust hover:bg-rust-dark text-sand-50 font-body font-medium tracking-wide px-7 py-3 rounded-sm transition-colors duration-300;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 border border-gold text-gold hover:bg-gold hover:text-indigo-deep font-body font-medium tracking-wide px-7 py-3 rounded-sm transition-colors duration-300;
+}
+
+.btn-ghost-light {
+  @apply inline-flex items-center justify-center gap-2 border border-sand-50/70 text-sand-50 hover:bg-sand-50 hover:text-indigo-deep font-body font-medium tracking-wide px-7 py-3 rounded-sm transition-colors duration-300;
+}
+
+.section-pad {
+  @apply px-6 md:px-10 lg:px-16 py-16 md:py-24;
+}
+
+.reveal {
+  animation: reveal-up 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+@keyframes reveal-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-delay-1 { animation-delay: 0.12s; }
+.reveal-delay-2 { animation-delay: 0.24s; }
+.reveal-delay-3 { animation-delay: 0.36s; }
+
+/* Visible keyboard focus for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #C79A3E;
+  outline-offset: 3px;
+}
